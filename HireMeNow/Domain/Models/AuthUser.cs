@@ -8,18 +8,13 @@ using System.Threading.Tasks;
 
 namespace Domain.Models
 {
-    public class AuthUser
+    [Table("AuthUser")]
+    public class AuthUser : SystemUser
     {
-        [Key]
-        public Guid AuthUserId { get; set; }  
-
         [Required]
         [MaxLength(255)]
-        public string Password{ get; set; }
-
-
-        // Navigation property for foreign key relationship
-        [ForeignKey("Id")]
-        public virtual SystemUser SystemUser { get; set; }
+        public string Password { get; set; } = null!;
     }
+
 }
+

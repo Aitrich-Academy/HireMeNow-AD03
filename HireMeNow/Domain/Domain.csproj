@@ -7,39 +7,26 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="DTOs\AuthUserDTO\" />
-    <Folder Include="DTOs\LogInDTO\" />
-    <Folder Include="DTOs\AdminDTO\" />
-    <Folder Include="DTOs\JobSeekerDTO\" />
-    <Folder Include="DTOs\JobProviderDTO\" />
-    <Folder Include="DTOs\SignUpDTO\" />
-    <Folder Include="Helpers\" />
-    <Folder Include="Interface\JobSeeker\" />
-    <Folder Include="Interface\JobProvider\" />
     <Folder Include="Interface\Admin\" />
     <Folder Include="Repository\Admin\" />
-    <Folder Include="Repository\JobSeeker\" />
-    <Folder Include="Repository\JobProvider\" />
-    <Folder Include="Repository\AuthUser\" />
     <Folder Include="Repository\LogIn\" />
-    <Folder Include="Repository\SignUp\" />
     <Folder Include="Service\Admin\" />
-    <Folder Include="Service\JobSeeker\" />
-    <Folder Include="Service\JobProvider\" />
-    <Folder Include="Service\AuthUser\" />
     <Folder Include="Service\LogIn\" />
-    <Folder Include="Service\SignUp\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="14.0.0" />
+    <PackageReference Include="MailKit" Version="4.13.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.7" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="MimeKit" Version="4.13.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="8.0.3" />
   </ItemGroup>
 
 </Project>

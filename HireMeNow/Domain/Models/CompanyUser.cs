@@ -35,17 +35,32 @@ public partial class CompanyUser
 
     [Column("SystemUserID")]
     public Guid SystemUserId { get; set; }
-
-    [ForeignKey("SystemUserId")]
-    [InverseProperty("CompanyUsers")]
+    // 🔹 Navigation to SystemUser
+    [ForeignKey(nameof(SystemUserId))]
+    [InverseProperty(nameof(SystemUser.CompanyUsers))]
     public virtual SystemUser CompanyUserNavigation { get; set; } = null!;
-
-    [ForeignKey("JobProviderId")]
-    [InverseProperty("CompanyUsers")]
+    // 🔹 Navigation to JobProviderCompany
+    [ForeignKey(nameof(JobProviderId))]
+    [InverseProperty(nameof(JobProviderCompany.CompanyUsers))]
     public virtual JobProviderCompany JobProviderNavigation { get; set; } = null!;
-
-    [InverseProperty("CompanyUser")]   // <-- matches ShortList.CompanyUser
+    // 🔹 One-to-many: ShortLists
+    [InverseProperty(nameof(ShortList.CompanyUser))]
     public virtual ICollection<ShortList> ShortLists { get; set; } = new List<ShortList>();
-
+    // 🔹 One-to-many: JobPosts posted by this company user
+    [InverseProperty(nameof(JobPost.PostedByUser))]
     public virtual ICollection<JobPost> JobPosts { get; set; } = new List<JobPost>();
+
+
+    //[ForeignKey("SystemUserId")]
+    //[InverseProperty("CompanyUsers")]
+    //public virtual SystemUser CompanyUserNavigation { get; set; } = null!;
+
+    //[ForeignKey("JobProviderId")]
+    //[InverseProperty("CompanyUsers")]
+    //public virtual JobProviderCompany JobProviderNavigation { get; set; } = null!;
+
+    //[InverseProperty("CompanyUser")]   // <-- matches ShortList.CompanyUser
+    //public virtual ICollection<ShortList> ShortLists { get; set; } = new List<ShortList>();
+
+    //public virtual ICollection<JobPost> JobPosts { get; set; } = new List<JobPost>();
 }

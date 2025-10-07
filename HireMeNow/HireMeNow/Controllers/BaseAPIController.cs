@@ -3,9 +3,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HireMeNowAD03.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1")]
 [ApiController]
-public class BaseAPIController : ControllerBase
+public abstract class BaseAPIController<T> : ControllerBase
 {
 }
+   
 }

@@ -7,7 +7,7 @@ namespace HireMeNow.ApplicationExtension
 {
     public static class ApplicationServiceExtensions
     {
-        public static void AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
+        public static void AddApplicationServices1(this IServiceCollection services, IConfiguration configuration)
         {
             // Register controllers
             services.AddControllers();

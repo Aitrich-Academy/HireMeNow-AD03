@@ -11,6 +11,7 @@ namespace Domain.Enums
         Pending,
         Viewed,
         Shortlisted,
-        Rejected
+        Rejected,
+        Accepted
     }
 }

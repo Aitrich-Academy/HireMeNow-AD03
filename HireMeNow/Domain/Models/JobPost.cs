@@ -14,7 +14,7 @@ public partial class JobPost
     [Column("JobPostID")]
     public Guid JobPostId { get; set; }
 
-    [StringLength(10)]
+    [StringLength(100)]
     public string JobTitle { get; set; } = null!;
 
     [StringLength(250)]
@@ -26,13 +26,28 @@ public partial class JobPost
     [ForeignKey(nameof(Location))]
     public Guid LocationId { get; set; }
 
-    public Guid Company { get; set; }
+   // public Guid Company { get; set; }
 
     [ForeignKey(nameof(Industry))]
     public Guid IndustryId { get; set; }
+    
+    [Required]
+    [Column("JobProviderId")]
+    public Guid JobProviderId { get; set; }
 
-    [ForeignKey(nameof(CompanyUser))]
-    public Guid PostedBy { get; set; }
+    [ForeignKey(nameof(JobProviderId))]
+    [InverseProperty(nameof(JobProviderCompany.JobPosts))]
+    public virtual JobProviderCompany JobProviderCompany { get; set; } = null!;
+
+
+    // 🔹 Foreign key to CompanyUser who posted the job
+    [Required]
+    [Column("CompanyUserID")]
+    public Guid PostedById { get; set; }
+    
+    [ForeignKey(nameof(PostedById))]
+    [InverseProperty(nameof(CompanyUser.JobPosts))]
+    public virtual CompanyUser PostedByUser { get; set; } = null!;
 
     [Column(TypeName = "datetime")]
     public DateTime PostedDate { get; set; }
@@ -42,4 +57,6 @@ public partial class JobPost
 
     [InverseProperty(nameof(SavedJob.JobPost))]   // ✅ match SavedJob.JobPost
     public virtual ICollection<SavedJob> SavedJobs { get; set; } = new List<SavedJob>();
+
+   
 }

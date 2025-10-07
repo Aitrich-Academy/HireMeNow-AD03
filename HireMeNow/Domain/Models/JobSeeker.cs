@@ -34,7 +34,7 @@ public partial class JobSeeker
     public virtual ICollection<JobApplication> JobApplications { get; set; } = new List<JobApplication>();
 
     // 🔗 Correct pair with SystemUser.JobSeeker
-    [ForeignKey("JobSeekerId")]
+    [ForeignKey(nameof(JobSeekerId))]
     [InverseProperty(nameof(SystemUser.JobSeeker))]
     public virtual SystemUser JobSeekerNavigation { get; set; } = null!;
 
@@ -45,4 +45,7 @@ public partial class JobSeeker
     // 🔗 Correct pair with SavedJob.JobSeeker
     [InverseProperty(nameof(SavedJob.JobSeeker))]
     public virtual ICollection<SavedJob> SavedJobs { get; set; } = new List<SavedJob>();
+    // 🔗 Navigation to ShortLists
+    [InverseProperty(nameof(ShortList.JobSeeker))]
+    public virtual ICollection<ShortList> ShortLists { get; set; } = new List<ShortList>();
 }

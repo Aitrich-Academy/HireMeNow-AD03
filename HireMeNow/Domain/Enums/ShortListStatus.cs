@@ -8,8 +8,8 @@ namespace Domain.Enums
 {
     public enum ShortListStatus
     {
+        Pending,
         ShortListed,
-        Rejected,
-        Pending
+        Rejected
     }
 }
