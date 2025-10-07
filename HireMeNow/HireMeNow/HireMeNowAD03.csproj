@@ -23,9 +23,9 @@
 
   <ItemGroup>
     <Folder Include="Controllers\Admin\" />
-    <Folder Include="Controllers\Jobseeker\" />
+    <Folder Include="Controllers\JobProvider\" />
     <Folder Include="RequestObject\Admin\" />
-    <Folder Include="RequestObject\JobSeeker\" />
+    <Folder Include="RequestObject\JobProvider\" />
   </ItemGroup>
 
 </Project>

@@ -6,8 +6,6 @@ using Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 
 namespace Domain.Models;
-
-[Table("JobApplication")]
 public partial class JobApplication
 {
     [Key]

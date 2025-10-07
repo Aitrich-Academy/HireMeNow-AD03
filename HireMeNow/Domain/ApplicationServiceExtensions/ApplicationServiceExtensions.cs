@@ -1,7 +1,7 @@
 ﻿using Domain.Data;
-using Domain.Interface.JobProvider;
-using Domain.Repository.JobProvider;
-using Domain.Service.JobProvider;
+using Domain.Interface.JobSeeker;
+using Domain.Repository.JobSeeker;
+using Domain.Service.JobSeeker;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -10,7 +10,7 @@ namespace HireMeNow.ApplicationExtension
 {
     public static class ApplicationServiceExtensions
     {
-        public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
+        public static void AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
         {
             // Register controllers
             services.AddControllers();
@@ -19,13 +19,8 @@ namespace HireMeNow.ApplicationExtension
             services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddScoped<IJobProviderRepository, JobProviderRepository>();
-            services.AddScoped<IJobProviderService, JobProviderService>();
-            services.AddScoped<IJobRepository, JobRepository>();
-            services.AddScoped<IJobService, JobService>();
-
-
-            return services;
+            services.AddScoped<IJobSeekerProfileService, JobSeekerProfileService>();
+            services.AddScoped<IJobSeekerProfileRepository, JobSeekerProfileRepository>();
         }
     }
 }

@@ -3,7 +3,6 @@ using Domain.Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-[Table("JobProviderCompany")]
 public partial class JobProviderCompany
 {
     [Key]

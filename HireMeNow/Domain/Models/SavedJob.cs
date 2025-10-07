@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Domain.Models;
 
-[Table("SavedJob")]
 public partial class SavedJob
 {
     [Key]
