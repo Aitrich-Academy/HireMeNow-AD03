@@ -4,6 +4,7 @@ using Domain.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Domain.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250922102453_CreatorIDremoved")]
+    partial class CreatorIDremoved
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -211,9 +214,6 @@ namespace Domain.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("CompanyUserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid>("CreatorID")
                         .HasColumnType("uniqueidentifier");
 
@@ -244,7 +244,7 @@ namespace Domain.Migrations
 
                     b.HasKey("JobPostId");
 
-                    b.HasIndex("CompanyUserId");
+                    b.HasIndex("CreatorID");
 
                     b.ToTable("JobPost", (string)null);
                 });
@@ -712,9 +712,13 @@ namespace Domain.Migrations
 
             modelBuilder.Entity("Domain.Models.JobPost", b =>
                 {
-                    b.HasOne("CompanyUser", null)
+                    b.HasOne("CompanyUser", "CompanyUser")
                         .WithMany("JobPosts")
-                        .HasForeignKey("CompanyUserId");
+                        .HasForeignKey("CreatorID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CompanyUser");
                 });
 
             modelBuilder.Entity("Domain.Models.JobSeeker", b =>

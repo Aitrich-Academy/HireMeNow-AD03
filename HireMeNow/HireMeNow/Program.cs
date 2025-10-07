@@ -1,5 +1,6 @@
 using Domain.Data;
 using HireMeNow.ApplicationExtension;
+using HireMeNowAD03.Mapping;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,6 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
 // Add application services from extension
 builder.Services.AddApplicationServices(builder.Configuration);
 

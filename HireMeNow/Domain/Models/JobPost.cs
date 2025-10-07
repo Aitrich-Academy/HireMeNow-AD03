@@ -19,6 +19,8 @@ public partial class JobPost
 
     [StringLength(250)]
     public string JobSummary { get; set; } = null!;
+    [Required]
+    public string CompanyName { get; set; }
 
     [Required]
     public JobType JobType { get; set; }
@@ -26,16 +28,19 @@ public partial class JobPost
     [ForeignKey(nameof(Location))]
     public Guid LocationId { get; set; }
 
-    public Guid Company { get; set; }
-
     [ForeignKey(nameof(Industry))]
     public Guid IndustryId { get; set; }
 
     [ForeignKey(nameof(CompanyUser))]
-    public Guid PostedBy { get; set; }
+    public Guid CreatorID { get; set; }
 
     [Column(TypeName = "datetime")]
     public DateTime PostedDate { get; set; }
+
+    [ForeignKey(nameof(JobProviderCompany))]
+    public Guid JobProviderID { get; set; }
+
+   // public virtual CompanyUser CompanyUser { get; set; } = null!;
 
     [InverseProperty(nameof(JobApplication.JobPost))]   // ✅ point to JobApplication.JobPost
     public virtual ICollection<JobApplication> JobApplications { get; set; } = new List<JobApplication>();
