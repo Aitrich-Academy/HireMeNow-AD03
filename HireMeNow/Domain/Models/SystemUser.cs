@@ -2,6 +2,7 @@
 using Domain.Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 [Table("SystemUser")]
 public partial class SystemUser
@@ -27,6 +28,7 @@ public partial class SystemUser
     [InverseProperty("CompanyUserNavigation")]
     public virtual ICollection<CompanyUser> CompanyUsers { get; set; } = new List<CompanyUser>();
 
+    [JsonIgnore]  
     [InverseProperty("JobProviderNavigation")]
     public virtual ICollection<JobProviderCompany> JobProviderCompanies { get; set; } = new List<JobProviderCompany>();
 }

@@ -1,12 +1,13 @@
 ﻿using Domain.Data;
 using Domain.Interface.JobProvider;
+using HireMeNowAD03.Mapping;
 using Domain.Repository.JobProvider;
 using Domain.Service.JobProvider;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace HireMeNow.ApplicationExtension
+namespace HireMeNowAD03.ApplicationExtension
 {
     public static class ApplicationServiceExtensions
     {
@@ -23,8 +24,6 @@ namespace HireMeNow.ApplicationExtension
             services.AddScoped<IJobProviderService, JobProviderService>();
             services.AddScoped<IJobRepository, JobRepository>();
             services.AddScoped<IJobService, JobService>();
-
-
             return services;
         }
     }
