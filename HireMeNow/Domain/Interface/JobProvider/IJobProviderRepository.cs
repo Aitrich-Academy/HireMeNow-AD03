@@ -3,20 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Domain.DTOs.JobProviderDTO;
-using Domain.DTOs.JobSeekerDTO;
-using Domain.Models;
 
 namespace Domain.Interface.JobProvider
 {
     public interface IJobProviderRepository
     {
-        //Task<IEnumerable<Domain.Models.JobSeeker>> GetAllAsync();
-        //Task<Domain.Models.JobSeeker?> GetJobSeekerByIdAsync(Guid jobSeekerId);
-        //Task<IEnumerable<Domain.Models.JobSeeker>> GetJobSeekersByJobTitleAsync(string jobTitle);
-        //Task<JobApplication> GetApplicationByIdAsync(Guid applicationId);
-        //Task<List<JobApplication>> GetApplicationsByJobPostIdAsync(Guid jobPostId);
-        //Task<int> CountApplicationsAsync();
+        Task<CompanyUser>GetCompanyUserByIDAsync(Guid CompanyUserID);
+        Task<List<CompanyUser>> GetCompanyUserListAsync(Guid JobProviderID);
+        Task<CompanyUser> AddNewCompanyUserAsync(CompanyUser NewCompanyUser);
+        Task<CompanyUser> GetCompanyUserAsync(Guid CompanyUserID,Guid JobProviderID);
+        Task<CompanyUser> UpdateCompanyUserAsync(Guid CompanyUserID, CompanyUser UpdatedCompanyUser);
+        Task<CompanyUser> DeleteCompanyUserAsync(Guid CompanyUserID);
+        Task<int> GetCompanyUserCountAsync();
+        Task<JobProviderCompany> GetJobProviderCompanyByIDAsync(Guid JobProviderID);
+        Task<List<JobProviderCompany>> GetJobProviderCompaniesList();
+        Task<List<JobProviderCompany>> GetJobProviderCompaniesByLocationID(Guid LocationID);
+        Task<List<JobProviderCompany>> GetJobProviderCompaniesByIndustryIDAsync(Guid industryID);
+        Task<JobProviderCompany> CreateNewJobProviderCompanyAsync(Guid systemID, JobProviderCompany NewCompany);
+        Task<JobProviderCompany> UpdateJobProviderCompanyAsync(Guid jobProviderID, JobProviderCompany UpdatedCompany);
+        Task<JobProviderCompany> DeleteJobProviderCompanyAsync(Guid jobProviderID);
+        Task<int> GetJobProviderCompanyCountAsync();
 
     }
 }

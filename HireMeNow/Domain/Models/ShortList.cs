@@ -7,7 +7,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Domain.Models;
 
-[Table("ShortList")]
 public partial class ShortList
 {
     [Key]

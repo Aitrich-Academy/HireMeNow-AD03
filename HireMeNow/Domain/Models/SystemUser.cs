@@ -3,7 +3,6 @@ using Domain.Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-[Table("SystemUser")]
 public partial class SystemUser
 {
     [Key]

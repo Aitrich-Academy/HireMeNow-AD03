@@ -7,8 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Domain.Models;
 
-[Table("SignUpRequest")]
-//[Index("Email", Name = "UQ__SignUpRe__A9D105349BAE5C47", IsUnique = true)]
+[Index("Email", Name = "UQ__SignUpRe__A9D105349BAE5C47", IsUnique = true)]
 public partial class SignUpRequest
 {
     [Key]

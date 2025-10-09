@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Domain.Models;
 
-[Table("Industry")]
 public partial class Industry
 {
     [Key]

@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Domain.Models;
 
-[Table("Skill")]
 public partial class Skill
 {
     [Key]
@@ -20,7 +19,5 @@ public partial class Skill
     [StringLength(50)]
     [Unicode(false)]
     public string Description { get; set; } = null!;
-
-    [InverseProperty("Skill")]
-    public virtual ICollection<JobSeekerProfileSkill> JobSeekerProfileSkills { get; set; } = new List<JobSeekerProfileSkill>();
+    public virtual ICollection<JobSeekerProfileSkill> JobSeekerProfileSkills { get; set; }
 }

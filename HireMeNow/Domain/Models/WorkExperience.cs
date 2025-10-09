@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Domain.Models;
 
-[Table("WorkExperience")]
 public partial class WorkExperience
 {
     [Key]

@@ -6,20 +6,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Domain.Models;
 
-[Table("Resume")]
 public partial class Resume
 {
     [Key]
-    [Column("ResumeID")]
     public Guid ResumeId { get; set; }
-
+    public Guid? JobSeekerProfileId { get; set; }
     public string? ResumeTitle { get; set; }
-
     public byte[]? File { get; set; }
 
-    [InverseProperty("Resume")]
-    public virtual ICollection<JobApplication> JobApplications { get; set; } = new List<JobApplication>();
-
-    [InverseProperty("Resume")]
-    public virtual ICollection<JobSeekerProfile> JobSeekerProfiles { get; set; } = new List<JobSeekerProfile>();
+    public virtual ICollection<JobApplication> JobApplications { get; set; } = new List<JobApplication>();  
+    public virtual JobSeekerProfile JobSeekerProfile { get; set; } = null!;
 }

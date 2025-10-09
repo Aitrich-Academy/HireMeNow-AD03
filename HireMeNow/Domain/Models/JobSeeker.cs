@@ -7,7 +7,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Domain.Models;
 
-[Table("JobSeeker")]
 public partial class JobSeeker
 {
     [Key]
@@ -29,20 +28,16 @@ public partial class JobSeeker
 
     public byte[]? Image { get; set; }
 
-    // 🔗 Correct pair with JobApplication.JobSeeker
     [InverseProperty(nameof(JobApplication.JobSeeker))]
     public virtual ICollection<JobApplication> JobApplications { get; set; } = new List<JobApplication>();
 
-    // 🔗 Correct pair with SystemUser.JobSeeker
-    [ForeignKey(nameof(JobSeekerId))]
+    [ForeignKey("JobSeekerId")]
     [InverseProperty(nameof(SystemUser.JobSeeker))]
     public virtual SystemUser JobSeekerNavigation { get; set; } = null!;
 
-    // 🔗 Correct pair with JobSeekerProfile.JobSeeker
     [InverseProperty(nameof(JobSeekerProfile.JobSeeker))]
     public virtual ICollection<JobSeekerProfile> JobSeekerProfiles { get; set; } = new List<JobSeekerProfile>();
 
-    // 🔗 Correct pair with SavedJob.JobSeeker
     [InverseProperty(nameof(SavedJob.JobSeeker))]
     public virtual ICollection<SavedJob> SavedJobs { get; set; } = new List<SavedJob>();
     // 🔗 Navigation to ShortLists

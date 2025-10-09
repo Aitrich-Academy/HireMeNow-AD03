@@ -13,34 +13,26 @@ namespace Domain.Data
         public AppDbContext(DbContextOptions options) : base(options)
         {
         }
-
-        protected AppDbContext()
-        {
-        }
-
         public DbSet<ShortList> ShortLists { get; set; }
         public DbSet<Interview> Interviews { get; set; }
         public DbSet<JobApplication> JobApplications { get; set; }
         public DbSet<SignUpRequest> SignUpRequests { get; set; }
-
         public DbSet<AuthUser> AuthUsers { get; set; }
         public DbSet<CompanyUser> CompanyUsers { get; set; }
-        public DbSet<Industry> Industrys { get; set; }
+        public DbSet<Industry> Industries { get; set; }
         public DbSet<JobPost> JobPosts { get; set; }
-        public DbSet<JobProviderCompany> JobProviderCompanys { get; set; }
+        public DbSet<JobProviderCompany> JobProviderCompanies { get; set; }
         public DbSet<JobSeeker> JobSeekers { get; set; }
         public DbSet<JobSeekerProfile> JobSeekerProfiles { get; set; }
         public DbSet<Location> Locations { get; set; }
         public DbSet<Qualification> Qualifications { get; set; }
 
         public DbSet<SavedJob> SavedJobs { get; set; }
-        public DbSet<Resume> Resumes { get; set; } = null!;
-        //public DbSet<ShortList> ShortLists { get; set; }
-        //public DbSet<SignUpRequest> SignUpRequests { get; set; }
         public DbSet<Skill> Skills { get; set; }
         public DbSet<SystemUser> SystemUsers { get; set; }
         public DbSet<WorkExperience> WorkExperiences { get; set; }
-
+        public DbSet<JobSeekerProfileSkill> JobSeekerProfileSkills {  get; set; }
+        public DbSet<Resume> Resumes { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -157,6 +149,20 @@ namespace Domain.Data
                 .WithOne(su => su.JobSeeker)
                 .HasForeignKey<JobSeeker>(js => js.JobSeekerId);
 
+            // Configure composite primary key for join table
+            modelBuilder.Entity<JobSeekerProfileSkill>()
+                .HasKey(jps => new { jps.JobSeekerProfileId, jps.SkillId });
+
+            // Configure relationships
+            modelBuilder.Entity<JobSeekerProfileSkill>()
+                .HasOne(jps => jps.JobSeekerProfile)
+                .WithMany(jp => jp.JobSeekerProfileSkills)
+                .HasForeignKey(jps => jps.JobSeekerProfileId);
+
+            modelBuilder.Entity<JobSeekerProfileSkill>()
+                .HasOne(jps => jps.Skill)
+                .WithMany(s => s.JobSeekerProfileSkills)
+                .HasForeignKey(jps => jps.SkillId);
         }
     }
 }
