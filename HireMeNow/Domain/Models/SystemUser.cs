@@ -19,13 +19,16 @@ public partial class SystemUser
 
     [Required]
     public Roles Role { get; set; }
+    // 1:1 relationship with JobSeeker
 
-    [InverseProperty("JobSeekerNavigation")]
+    [InverseProperty(nameof(JobSeeker.JobSeekerNavigation))]
     public virtual JobSeeker? JobSeeker { get; set; }
 
-    [InverseProperty("CompanyUserNavigation")]
+    // 1:N relationship with CompanyUser
+    [InverseProperty(nameof(CompanyUser.CompanyUserNavigation))]
     public virtual ICollection<CompanyUser> CompanyUsers { get; set; } = new List<CompanyUser>();
 
-    [InverseProperty("JobProviderNavigation")]
+    // 1:N relationship with JobProviderCompany
+    [InverseProperty(nameof(JobProviderCompany.JobProviderNavigation))]
     public virtual ICollection<JobProviderCompany> JobProviderCompanies { get; set; } = new List<JobProviderCompany>();
 }

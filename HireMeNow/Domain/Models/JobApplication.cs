@@ -35,4 +35,8 @@ public partial class JobApplication
     [ForeignKey("ResumeId")]
     [InverseProperty("JobApplications")]
     public virtual Resume Resume { get; set; } = null!;
+    
+    // 🔹 Navigation to ShortLists
+    [InverseProperty(nameof(ShortList.JobApplication))]
+    public virtual ICollection<ShortList> ShortListStatus { get; set; } = new List<ShortList>();
 }

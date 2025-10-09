@@ -40,4 +40,7 @@ public partial class JobSeeker
 
     [InverseProperty(nameof(SavedJob.JobSeeker))]
     public virtual ICollection<SavedJob> SavedJobs { get; set; } = new List<SavedJob>();
+    // 🔗 Navigation to ShortLists
+    [InverseProperty(nameof(ShortList.JobSeeker))]
+    public virtual ICollection<ShortList> ShortLists { get; set; } = new List<ShortList>();
 }

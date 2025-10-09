@@ -35,6 +35,6 @@ public partial class Interview
     public Guid ApplicationId { get; set; }
 
     // Navigation property to JobApplication
-    [ForeignKey("ApplicationID")]
-    public JobApplication JobApplication { get; set; }
+    [ForeignKey(nameof(ApplicationId))]
+    public JobApplication JobApplication { get; set; } = null!;
 }

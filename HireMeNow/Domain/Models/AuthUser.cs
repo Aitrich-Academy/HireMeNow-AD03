@@ -8,10 +8,13 @@ using System.Threading.Tasks;
 
 namespace Domain.Models
 {
-    public partial class AuthUser:SystemUser
+    [Table("AuthUser")]
+    public class AuthUser : SystemUser
     {
         [Required]
         [MaxLength(255)]
-        public string Password{ get; set; }
+        public string Password { get; set; } = null!;
     }
+
 }
+
