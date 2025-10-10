@@ -97,22 +97,22 @@ namespace Domain.Repository.JobProvider
 
         public async Task<JobProviderCompany> GetJobProviderCompanyByIDAsync(Guid JobProviderID)
         {
-            return await _context.JobProviderCompanys.FirstOrDefaultAsync(Jp => Jp.JobProviderId == JobProviderID);
+            return await _context.JobProviderCompanies.FirstOrDefaultAsync(Jp => Jp.JobProviderId == JobProviderID);
         }
 
         public async Task<List<JobProviderCompany>> GetJobProviderCompaniesList()
         {
-            return await _context.JobProviderCompanys.ToListAsync();
+            return await _context.JobProviderCompanies.ToListAsync();
         }
 
         public async Task<List<JobProviderCompany>> GetJobProviderCompaniesByLocationID(Guid LocationID)
         {
-            return await _context.JobProviderCompanys.Where(jp => jp.LocationId == LocationID).ToListAsync();
+            return await _context.JobProviderCompanies.Where(jp => jp.LocationId == LocationID).ToListAsync();
         }
 
         public async Task<List<JobProviderCompany>> GetJobProviderCompaniesByIndustryIDAsync(Guid industryID)
         {
-            return await _context.JobProviderCompanys.Where(jp => jp.IndustryId == industryID).ToListAsync();
+            return await _context.JobProviderCompanies.Where(jp => jp.IndustryId == industryID).ToListAsync();
         }
 
         public async Task<JobProviderCompany> CreateNewJobProviderCompanyAsync(Guid systemID, JobProviderCompany NewCompany)
@@ -125,7 +125,7 @@ namespace Domain.Repository.JobProvider
             else
             {
                 NewCompany.JobProviderId = systemID;
-                _context.JobProviderCompanys.Add(NewCompany);
+                _context.JobProviderCompanies.Add(NewCompany);
                 await _context.SaveChangesAsync();
                 return NewCompany;
             }
@@ -133,7 +133,7 @@ namespace Domain.Repository.JobProvider
 
         public async Task<JobProviderCompany> UpdateJobProviderCompanyAsync(Guid jobProviderID, JobProviderCompany UpdatedCompany)
         {
-            var CompanyExists = await _context.JobProviderCompanys.FirstOrDefaultAsync(Jp => Jp.JobProviderId == jobProviderID);
+            var CompanyExists = await _context.JobProviderCompanies.FirstOrDefaultAsync(Jp => Jp.JobProviderId == jobProviderID);
             if (CompanyExists == null)
             {
                 return null;
@@ -146,7 +146,7 @@ namespace Domain.Repository.JobProvider
                 CompanyExists.IndustryId = UpdatedCompany.IndustryId;
                 CompanyExists.LocationId = UpdatedCompany.LocationId;
 
-                _context.JobProviderCompanys.Update(CompanyExists);
+                _context.JobProviderCompanies.Update(CompanyExists);
                 await _context.SaveChangesAsync();
                 return CompanyExists;
             }
@@ -154,7 +154,7 @@ namespace Domain.Repository.JobProvider
 
         public async Task<JobProviderCompany> DeleteJobProviderCompanyAsync(Guid jobProviderID)
         {
-            var CompanyExists = await _context.JobProviderCompanys.FirstOrDefaultAsync(Jp => Jp.JobProviderId == jobProviderID);
+            var CompanyExists = await _context.JobProviderCompanies.FirstOrDefaultAsync(Jp => Jp.JobProviderId == jobProviderID);
             var SystemUserExists = await _context.SystemUsers.FirstOrDefaultAsync(Su => Su.SystemUserId == jobProviderID);
             if (CompanyExists == null && SystemUserExists == null)
             {
@@ -162,7 +162,7 @@ namespace Domain.Repository.JobProvider
             }
             else
             {
-                _context.JobProviderCompanys.Remove(CompanyExists);
+                _context.JobProviderCompanies.Remove(CompanyExists);
                 _context.SystemUsers.Remove(SystemUserExists);
                 await _context.SaveChangesAsync();
                 return CompanyExists;
@@ -171,7 +171,7 @@ namespace Domain.Repository.JobProvider
 
         public async Task<int> GetJobProviderCompanyCountAsync()
         {
-            return await _context.JobProviderCompanys.CountAsync();
+            return await _context.JobProviderCompanies.CountAsync();
         }
     }
 }

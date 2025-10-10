@@ -1,7 +1,6 @@
 using System.Text;
 using Domain.Data;
 using Domain.Helpers;
-using HireMeNow.ApplicationExtension;
 using HireMeNowAD03.Extensions;
 using HireMeNowAD03.Mapping;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -14,7 +13,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddApplicationServices(builder.Configuration);
-builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
+builder.Services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
 builder.Services.Configure<MailSettings>(builder.Configuration.GetSection("EmailSettings"));
 builder.Services.AddControllers();
 

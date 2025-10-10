@@ -28,8 +28,8 @@ namespace Domain.Repository.JobProvider
             }
             else
             {
-                NewPost.CreatorID = companyUserID;
-                NewPost.JobProviderID = CompanyUserExists.JobProviderId;
+                NewPost.PostedById = companyUserID;
+                NewPost.JobProviderId = CompanyUserExists.JobProviderId;
                 NewPost.PostedDate = DateTime.Now;
                 NewPost.JobPostId = Guid.NewGuid();
                 // NewPost.LocationId =CompanyUserExists.
@@ -54,8 +54,8 @@ namespace Domain.Repository.JobProvider
                 JobPostExists.JobTitle =UpdatedPost.JobTitle;
                 JobPostExists.JobSummary =UpdatedPost.JobSummary;
                 JobPostExists.CompanyName =UpdatedPost.CompanyName;
-                JobPostExists.CreatorID = UpdatedPost.CreatorID;
-                JobPostExists.JobProviderID = UpdatedPost.JobProviderID;
+                JobPostExists.PostedById = UpdatedPost.PostedById;
+                JobPostExists.JobProviderId = UpdatedPost.JobProviderId;
                 JobPostExists.JobType=UpdatedPost.JobType;
                 JobPostExists.LocationId=UpdatedPost.LocationId;
                 JobPostExists.IndustryId =UpdatedPost.IndustryId;
@@ -75,7 +75,7 @@ namespace Domain.Repository.JobProvider
             }
             else
             {
-               var ListAllJobs = await _context.JobPosts.Where(J => J.CreatorID == CompanyUserID).ToListAsync();
+               var ListAllJobs = await _context.JobPosts.Where(J => J.PostedById == CompanyUserID).ToListAsync();
                 return ListAllJobs;
                 
             }
@@ -83,14 +83,14 @@ namespace Domain.Repository.JobProvider
 
         public async Task<List<JobPost>> GetAllJobListByJobProviderCompanyAsync(Guid jobProviderCompanyID)
         {
-            var JobProviderExists = await _context.JobProviderCompanys.AnyAsync(Jp => Jp.JobProviderId == jobProviderCompanyID);
+            var JobProviderExists = await _context.JobProviderCompanies.AnyAsync(Jp => Jp.JobProviderId == jobProviderCompanyID);
             if (!JobProviderExists)
             {
                 return null;
             }
             else
             {
-                var ListAllJobs = await _context.JobPosts.Where(J => J.JobProviderID == jobProviderCompanyID).ToListAsync();
+                var ListAllJobs = await _context.JobPosts.Where(J => J.JobProviderId == jobProviderCompanyID).ToListAsync();
                 return ListAllJobs;
 
             }
@@ -117,7 +117,7 @@ namespace Domain.Repository.JobProvider
         }
         public async Task<List<JobPost>> GetJobsByIndustryAsync(Guid indID)
         {
-            var IndustryExists = await _context.Industrys.AnyAsync(Jp => Jp.IndustryId == indID);
+            var IndustryExists = await _context.Industries.AnyAsync(Jp => Jp.IndustryId == indID);
             if (!IndustryExists)
             {
                 return null;

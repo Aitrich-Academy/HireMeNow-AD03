@@ -53,6 +53,8 @@ namespace HireMeNowAD03.Extensions
             services.AddScoped<IJobRepository, JobRepository>();
             services.AddScoped<IJobService, JobService>();
         
+			services.AddScoped<IJobSeekerProfileService, JobSeekerProfileService>();
+            services.AddScoped<IJobSeekerProfileRepository, JobSeekerProfileRepository>();
             return services;
         }
     }

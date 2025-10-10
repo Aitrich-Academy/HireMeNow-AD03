@@ -41,34 +41,6 @@ namespace HireMeNowAD03.Controllers.Auth
             return Ok(new { SignupId = signupId, Message = "Verification email sent" });
         }
 
-        //[HttpPost("jobseeker/signup")]
-        //[AllowAnonymous]
-        //public async Task<IActionResult> JobSeekerSignup(JobSeekerSignupRequest request)
-        //{
-            
-        //    var dto = _mapper.Map<SignUpRequestDto>(request);
-
-        //    var id = await _signUpService.CreateSignupRequestAsync(dto, Roles.JobSeeker);
-        //    return Ok(new { SignupId = id, Message = "Verification email sent" });
-        //}
-
-        //[HttpPost("jobprovider/signup")]
-        //[AllowAnonymous]
-        //public async Task<IActionResult> JobProviderSignup(JobProviderSignupRequest request)
-        //{
-        //    var dto = new SignUpRequestDto
-        //    {
-        //        FirstName = request.FirstName,
-        //        LastName = request.LastName,
-        //        UserName = request.UserName,
-        //        Email = request.Email,
-        //        Phone = request.Phone
-        //    };
-
-        //    var id = await _signUpService.CreateSignupRequestAsync(dto, Roles.JobProvider);
-        //    return Ok(new { SignupId = id, Message = "Verification email sent" });
-        //}
-
 
         [HttpGet("verify-email/{signupId}")]
         [AllowAnonymous]
