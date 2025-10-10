@@ -11,7 +11,7 @@ namespace HireMeNowAD03.Controllers.JobProvider
 {
     [Route("api/v1/[controller]")]
     [ApiController]
-    public class JobProviderController : BaseApiController<JobProviderController>
+    public class JobProviderController : BaseAPIController<JobProviderController>
     {
         private readonly IJobProviderService _service;
         private readonly IMapper _mapper;

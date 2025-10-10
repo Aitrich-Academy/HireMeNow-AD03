@@ -93,7 +93,7 @@ namespace Domain.Repository.AuthUser
                     //IndustryId = Guid.NewGuid()            // set default or from request
 
                 };
-                await _context.JobProviderCompanys.AddAsync(company);
+                await _context.JobProviderCompanies.AddAsync(company);
                 await _context.SaveChangesAsync(); // ensures JobProviderId is generated
             }
             
