@@ -31,10 +31,9 @@ public partial class Interview
     [ForeignKey("ShortListId")]
     public Guid ShortListId { get; set; }
 
-    [Column("ApplicationID")]
-    public Guid ApplicationId { get; set; }
+    [Column("JobApplicationId")]
+    public Guid JobApplicationId { get; set; }
 
-    // Navigation property to JobApplication
-    [ForeignKey(nameof(ApplicationId))]
+    [ForeignKey(nameof(JobApplicationId))]
     public JobApplication JobApplication { get; set; } = null!;
 }
